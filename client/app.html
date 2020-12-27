@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <title>Kinjal Furia | Loan Status Prediction</title>
+<meta name="description" content="">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="">
+    
+    <!-- Google Font(s) -->
+    <link href="https://fonts.googleapis.com/css?family=Capriola|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+
+    <!-- Bootstrap & jquery -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Awesome Icons Font -->
+<!--    <link href="../client/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+    
+    <!-- Header Icons -->
+<!--    <link href="../client/assets/fonts/icons/css/import-icons.css" rel="stylesheet">-->
+    <!-- Main CSS -->
+<!--    <link href="../client/style.css" rel="stylesheet">-->
+
+<!--    <script src="../client/app.js"></script>-->
+
+    <!-- Main JS -->
+    <!-- <script src="../client/assets/js/main.js"></script> -->
+
+    	 <script src="{{ url_for('static',filename='app.js') }}"></script>
+	<link rel="stylesheet"  href= "{{ url_for('static',filename='style.css') }}">
+    <link rel="stylesheet"
+          href= "{{ url_for('static',filename='assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet"
+          href= "{{ url_for('static',filename='assets/fonts/icons/css/import-icons.css') }}">
+    <!-- <script src="{{ url_for('static',filename='assets/js/main.js') }}"></script> -->
+
+<style type="text/css">
+  .radio input[type="radio"],
+.radio-inline input[type="radio"]
+{
+  position: absolute;
+  margin-top: 4px \9;
+  margin-left: 10px !important;
+}
+
+
+</style>
+
+
+
+</head>
+<body>
+        <div class="body-wrapper">
+
+
+            <div class="search-popup container-fluid hero-header">
+                <div class="header-centralizer">
+                    <div class="content-centralized">
+                        
+                    </div>
+                </div>
+            </div>
+            
+            
+
+
+            <div class="container-fluid pg-header" style="background-image: url('../client/loanpic.png');">
+                
+                <div class="pg-header-content">
+                    <!-- <h1 class="pg-title"> Contact </h1>
+                    <h4 class="pg-subtitle"> Get in touch with us </h4> -->
+                </div>
+                <div class="pg-header-icon icon-bubbles"></div>
+            </div>
+<!--            <div class="container page-intro">-->
+              <!-- <h4>And we'll be glad to help you</h4>  -->
+              <!-- add ur result -->
+
+<!--            </div>-->
+<!--            <div class="container-fluid map-contact">-->
+<!--                -->
+<!--            </div>-->
+            <div class="container pg-content">
+              <h2>Loan Status Predictor</h2>
+
+                <div class="col-sm-12 text-center">
+                    <form method="POST">
+                      <div class="form-group" style="background-color: rgb(253, 187, 25);">
+                          <label for="uiappinc">Applicant Income:</label>
+                          <input class="floatLabel"  type="number" id="uiappinc" 
+                          name="ApplicantIncome" value="1000">
+                      </div> 
+
+                      <div class="form-group">
+                          <label for="uicoappinc">Co-Applicant Income:</label>
+                          <input type="number" id="uicoappinc" class="floatLabel" 
+                          name="CoApplicantIncome" value="1000">
+                      </div>
+                      
+                      <div class="form-group" style="background-color: rgb(253, 187, 25);">
+                          <label for="uiloanamt">Loan Amount:</label>
+                          <input  type="number" id="uiloanamt" class="floatLabel" 
+                          name="LoanAmount" value="1000">
+                      </div>
+                      
+
+                      <div class="form-group">
+                          <label for="uiGender">Gender:</label>
+                          <label class="radio-inline">Female
+                          <input type="radio" id="radio-gender-female"
+                          checked="checked" name="uiGender" value="0">
+                         
+                          </label>
+
+                          <label class="radio-inline">Male
+                          <input type="radio" id="radio-gender-male" 
+                           name="uiGender" value="1">
+                          <!-- <span class="checkmark"></span> -->
+                          </label>
+
+
+                      </div>
+
+                      <div class="form-group" style="background-color: rgb(253, 187, 25);">
+                          <label for="uiMarried">Maried:</label>
+
+                          <label class="radio-inline">Yes
+                          <input type="radio" id="radio-married-yes" 
+                          checked="checked" name="uiMarried" value="1">
+                          
+                          </label>
+
+                          <label class="radio-inline">No
+                          <input type="radio" id="radio-married-no" 
+                           name="uiMarried" value="0">
+                          
+                          </label>
+
+                      </div>
+
+                      <div class="form-group">
+                          <label for="uiDependents">No. of Dependents:</label>
+                          <label class="radio-inline">None
+                          <input type="radio" id="radio-dep-0" 
+                           name="uiDependents" value="0">
+                          
+                          </label>
+
+                          <label class="radio-inline">One
+                          <input type="radio" id="radio-dep-1" 
+                          checked="checked" name="uiDependents" value="1">
+                          
+                          </label>
+
+                          <label class="radio-inline">Two
+                          <input type="radio" id="radio-dep-2" 
+                           name="uiDependents" value="2">
+                          
+                          </label>
+
+                          <label class="radio-inline">Three or More
+                          <input type="radio" id="radio-dep-3" 
+                           name="uiDependents" value="3">
+                          
+                          </label>
+
+
+
+                      </div> 
+
+                      <div class="form-group" style="background-color: rgb(253, 187, 25);">
+                          <label for="uiEdu">Education:</label>
+                          <label class="radio-inline">Graduate
+                          <input type="radio" id="radio-edu-0" 
+                          checked="checked" name="uiEdu" value="0">
+
+                          </label>
+
+                          <label class="radio-inline">Not Graduate
+                          <input type="radio" id="radio-edu-1" 
+                           name="uiEdu" value="1">
+
+                          </label>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="uiEmp">Self Employed:</label>
+                          
+                          <label class="radio-inline">Yes
+                          <input type="radio" id="radio-emp-1" 
+                          checked="checked" name="uiEmp" value="1">
+
+                          </label>
+
+                          <label class="radio-inline">No
+                          <input type="radio" id="radio-emp-0" 
+                           name="uiEmp" value="0">
+
+                          </label>
+                      </div>
+
+                      <div class="form-group" style="background-color: rgb(253, 187, 25);">
+                          <label for="uiLat">Loan Amount Term:(Months)</label>
+                          <input class="floatLabel"  type="number" id="uiLat" 
+                          name="LoanAmount" value="60">
+                      </div> 
+
+                      <div class="form-group radio">
+                          <label for="uiCredit">Credit History:</label>
+                          <label class="radio-inline">0
+                          <input type="radio" id="radio-crh-0" 
+                           name="uiCredit" value="0">
+
+                          </label>
+
+                          <label class="radio-inline">1
+                          <input type="radio" id="radio-crh-1" 
+                          checked="checked" name="uiCredit" value="1">
+
+                          </label>
+                      </div>
+
+                      <div class="form-group" style="background-color: rgb(253, 187, 25);">
+                          <label for="uiProperty">Property Area:</label>
+                          <label class="radio-inline">Rural
+                          <input type="radio" id="radio-prop-0" 
+                          checked="checked" name="uiProperty" value="0">
+
+                          </label>
+
+                          <label class="radio-inline">Semi Urban
+                          <input type="radio" id="radio-prop-1" 
+                           name="uiProperty" value="1">
+
+                          </label>
+
+                          <label class="radio-inline">Urban
+                          <input type="radio" id="radio-prop-2" 
+                           name="uiProperty" value="2">
+
+                          </label>
+                      </div>        
+
+                      <button type="button" class="btn btn-danger" value="Submit"
+                      onclick="onClickedLoanStatus()">Check Loan Status</button>
+
+                    </form>
+                    <div>
+                        <h2 id="uiLoanStatus" class="result">The Loan is:
+<!--                    <span id="uiLoanStatus" class="result" style="color:red"> </span>-->
+                            </h2>
+                    </div>
+
+                </div>
+
+
+                
+            </div>
+
+
+            
+
+       <!-- Start Footer -->
+      <footer>
+        <div class="row footer-info">
+          
+
+
+          <div class="footer-col social-networks">
+            Linkedin <br>
+            <a  class="fa fa-linkedin" href="https://www.linkedin.com/in/kinjal-f-aa5b0615/" target="_blank"></a>
+          
+          </div>
+          <div class="footer-col social-networks">
+
+            github<br>
+            <a href="https://github.com/kinjalfuria/" class="fa fa-github" target="_blank"></a>
+
+          </div>
+
+          <div class="footer-col social-networks"> 
+            dphi course <br>
+            <a href = "https://dphi.tech/bootcamps/machine-learning-online-bootcamp/" target="_blank" class="fa fa-book">
+            </a>
+          </div>
+          
+          <div class="footer-col footer-email">
+
+            Email - kinjal.learning@gmail.com
+          </div>
+
+          <div class="footer-col social-networks">
+            
+              Kaggle
+              <br/>
+
+           <a href="https://www.kaggle.com/kinjalf" target="_blank" class="fa fa-laptop"></a>
+
+            
+    
+          </div>
+        </div>
+      
+       
+      </footer>
+      <!-- End Footer -->
+    </div>
+
+   
+    
+  </body>
+
+</html>
+        
